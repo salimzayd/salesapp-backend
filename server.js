@@ -9,11 +9,27 @@ import userroute from "./Route/Userroute.js";
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: "https://salesapp-frontend.vercel.app/", // Allow frontend origin
-  methods: "GET,POST,PUT,DELETE",
-  credentials: true // Allow cookies if needed
-}));
+import cors from "cors";
+
+const allowedOrigins = [
+  "https://salesapp-frontend.vercel.app",
+  "http://localhost:3000"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true
+  })
+);
+
 
 
 // Database Connection
