@@ -10,7 +10,7 @@ import userroute from "./Route/Userroute.js";
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "https://bookshelf-frontend-kytp.vercel.app/", // Allow frontend origin
+  origin: "https://salesapp-frontend.vercel.app/", // Allow frontend origin
   methods: "GET,POST,PUT,DELETE",
   credentials: true // Allow cookies if needed
 }));
